@@ -1,0 +1,17 @@
+Flask==3.1.3
+numpy==2.4.4
+pandas==3.0.2
+scipy==1.17.1
+scikit-learn==1.8.0
+xgboost==3.2.0
+spacy==3.8.14
+datasets==4.8.4
+ftfy==6.3.1
+textstat==0.7.13
+tqdm==4.67.3
+pyarrow==23.0.1
+
+
+
+# after installing these, install the spaCy model used by the saved config:
+# python -m spacy download en_core_web_lg

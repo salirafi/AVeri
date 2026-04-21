@@ -1,0 +1,14 @@
+.venv/
+.DS_Store
+docs/
+__src/
+__pycache__/
+data/raw/
+saved/
+
+*.pkl
+*.parquet
+*.jsx
+
+blogtext.csv
+src/testing.ipynb

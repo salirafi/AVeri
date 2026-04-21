@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AVeri</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+
+  <header class="header-bar">
+    <div class="header-inner">
+      <h1 class="title">AVeri: Author Verifier</h1>
+      <!-- <p class="subtitle">Are your two texts written by the same author?</p> -->
+    </div>
+  </header>
+
+  <div class="page">
+    <div class="app-shell">
+      <main class="main-pane">
+
+        <section class="card workspace-card">
+          <div class="stack">
+            <div class="input-block">
+              <label class="label" for="text1">Text A</label>
+              <textarea id="text1" placeholder="Paste first text here..."></textarea>
+            </div>
+
+            <div class="input-block">
+              <label class="label" for="text2">Text B</label>
+              <textarea id="text2" placeholder="Paste second text here..."></textarea>
+            </div>
+          </div>
+
+          <p id="error" class="error-msg hidden"></p>
+          <button id="predict-btn" type="button">Predict</button>
+        </section>
+
+      </main>
+
+      <aside class="side-pane">
+
+        <section id="result-card" class="card">
+          <h2 class="section-title">Result</h2>
+          <div class="result-visual">
+
+            <div class="result-meter">
+              <div id="probability-ring" class="probability-ring" aria-hidden="true">
+                <div class="probability-ring-inner">
+                  <span id="probability" class="probability-value">0.0%</span>
+                </div>
+              </div>
+
+              <div class="classification">
+                <p id="classification-confidence" class="result-eyebrow"></p>
+                <p id="classification-decision" class="classification-decision"></p>
+              </div>
+            </div>
+
+            <div class="result-copy">
+              <p class="result-eyebrow">Probability</p>
+              <p class="result-description">Probability both texts were written by the same author.</p>
+            </div>
+
+          </div>
+        </section>
+
+      </aside>
+    </div>
+
+    <section class="bottom-panel">
+      <section class="card performance-card">
+
+        <h2 class="section-title">Model Performance</h2>
+
+        <div class="sidebar-stats">
+
+          <div class="meta-stat">
+            <div class="metric-main">
+              <div class="metric-summary">
+                <span id="metric-f1" class="meta-value">-</span>
+                <span class="meta-label">F1 Score</span>
+                <!-- <span id="metric-f1-rating" class="metric-rating">-</span> -->
+              </div>
+              <p class="metric-note">The model is good at prediction without raising too many false alarms.</p>
+            </div>
+          </div>
+
+          <div class="meta-stat">
+            <div class="metric-main">
+              <div class="metric-summary">
+                <span id="metric-youden" class="meta-value">-</span>
+                <span class="meta-label">Youden J</span>
+                <!-- <span id="metric-youden-rating" class="metric-rating">-</span> -->
+              </div>
+              <p class="metric-note">The model has moderate ability to correctly separate same- and different-author cases.</p>
+            </div>
+          </div>
+
+          <div class="meta-stat">
+            <div class="metric-main">
+              <div class="metric-summary">
+                <span id="metric-auc" class="meta-value">-</span>
+                <span class="meta-label">AUC-ROC</span>
+                <!-- <span id="metric-auc-rating" class="metric-rating">-</span> -->
+              </div>
+              <p class="metric-note">The model is strongly reliable at distinguishing between same- and different-author cases overall.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+    </section>
+
+  </div>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
