@@ -46,7 +46,7 @@ python -m spacy download en_core_web_lg
 
 `en_core_web_lg` is the spaCy model used to process the texts before training. See [https://spacy.io/models/en#en_core_web_lg](https://spacy.io/models/en#en_core_web_lg). In principle, one can use any spaCy model desired, including `en_core_web_trf`, which is the best model available (using transformer). Just make sure there is enough device RAM for the processing as it may consume a huge amount of memory if there are many long texts.
 
-If all saved model artifacts are present in the repo (which they should be; but if not, see [here](#4.-rebuild-the-training-pipeline)), you can directly run:
+If all saved model artifacts are present in the repo (which they should be; but if not, see [here](#4.-rebuild-the-training-pipeline)), directly run:
 
 ```bash
 python app.py
@@ -222,7 +222,7 @@ These features represent writing style and include:
 
 ### Lemma TF-IDF Features
 
-Implemented in [src/features_tfidf.py](src/features_tfidf.py]).
+Implemented in [src/features_tfidf.py](src/features_tfidf.py).
 
 This stage builds a content-word corpus from spaCy lemmas (includes 25,000 such features and can be tuned in the file's config). Tokens are excluded if they are:
 
@@ -236,16 +236,18 @@ This stage builds a content-word corpus from spaCy lemmas (includes 25,000 such 
 
 TF-IDF gives higher weight to terms that are frequent in one document but not common across all documents. Conceptually:
 
-```text
-tfidf(t, d) = tf(t, d) * idf(t)
-idf(t) = log((1 + N) / (1 + df(t))) + 1
-```
+$$
+\begin{aligned}
+\mathrm{TFIDF}(t, d) &= \mathrm{tf}(t, d) \cdot \mathrm{IDF}(t), \\
+\mathrm{IDF}(t) &= \log\left(\frac{1 + N}{1 + \mathrm{df}(t)}\right) + 1
+\end{aligned}
+$$
 
 With sublinear term frequency:
 
-```text
-tf(t, d) = 1 + log(raw_count(t, d))
-```
+$$
+\mathrm{TF}(t, d) = 1 + \log(\mathrm{raw\_count}(t, d))
+$$
 
 The vectorizer is fit only on the training split, then reused for validation, test, and inference.
 
@@ -292,9 +294,9 @@ Implemented in [src/dimensionality_reduction.py](src/dimensionality_reduction.py
 
 The repository includes a TruncatedSVD stage for reducing high-dimensional TF-IDF, character n-gram, and POS n-gram feature families. TruncatedSVD approximates a matrix factorization:
 
-```text
-X ~= U_k Sigma_k V_k^T
-```
+$$
+X \approx U_k \Sigma_k V_k^\top
+$$
 
 where `k` is the number of retained latent components. This can reduce feature dimensionality while preserving major variance directions.
 
@@ -310,49 +312,61 @@ Implemented in [src/model_training.py](src/model_training.py).
 
 For each original feature suffix `j`, the pipeline has:
 
-```text
-x1_j = feature j for text1
-x2_j = feature j for text2
-```
+$$
+\begin{aligned}
+x_{1,j} &= \text{feature } j \text{ for text1}, \\
+x_{2,j} &= \text{feature } j \text{ for text2}
+\end{aligned}
+$$
 
 It builds local pairwise features:
 
-```text
-abs_diff_j = |x1_j - x2_j|
-product_j = x1_j * x2_j
-```
+$$
+\begin{aligned}
+\mathrm{abs diff}_j &= \left|x_{1,j} - x_{2,j}\right|, \\
+\mathrm{product}_j &= x_{1,j} \cdot x_{2,j}
+\end{aligned}
+$$
 
 The absolute difference measures distance for a single feature whereas the product measures whether both texts have similarly high values for that feature. The pipeline also builds global pairwise features for feature families such as TF-IDF, character n-grams, POS n-grams, and scalar style features following:
 
-```text
-cosine_similarity(x1, x2) = (x1 dot x2) / (||x1|| ||x2||)
-L1_distance(x1, x2) = sum_j |x1_j - x2_j|
-L2_distance(x1, x2) = sqrt(sum_j (x1_j - x2_j)^2)
-```
+$$
+\begin{aligned}
+\mathrm{cosine similarity}(x_1, x_2) &= \frac{x_1 \cdot x_2}{\lVert x_1 \rVert \lVert x_2 \rVert}, \\
+L^1(x_1, x_2) &= \sum_j \left|x_{1,j} - x_{2,j}\right|, \\
+L^2(x_1, x_2) &= \sqrt{\sum_j \left(x_{1,j} - x_{2,j}\right)^2}
+\end{aligned}
+$$
 
 ### Classifier
 
 The final classifier uses `xgboost.XGBClassifier` with binary logistic objective. The model outputs:
 
-```text
-P(same_author | pair_features)
-```
+$$
+P(\text{same author} \mid \text{pair\_ features})
+$$
 
 ### Threshold Selection
 
 The model first produces probabilities which is turned into labels via:
 
-```text
-predicted_label = 1 if probability >= threshold else 0
-```
+$$
+\text{predicted label} =
+\begin{cases}
+1, & \text{if } p \geq \tau, \\
+0, & \text{otherwise}
+\end{cases}
+$$
 
 The threshold is selected on the validation split by grid search. The configured metric is Youden's J (but it can be changed from the file's config):
 
-```text
-sensitivity = TP / (TP + FN)
-specificity = TN / (TN + FP)
-Youden's J = sensitivity + specificity - 1
-```
+$$
+\begin{aligned}
+\text{sensitivity} &= \frac{TP}{TP + FN}, \\
+\text{specificity} &= \frac{TN}{TN + FP}, \\
+J &= \text{sensitivity} + \text{specificity} - 1
+\end{aligned}
+$$
 
 The current threshold used for the web app is:
 

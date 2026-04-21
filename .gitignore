@@ -3,6 +3,7 @@
 docs/
 __src/
 __pycache__/
+HFSpace/
 
 data/raw/**
 !data/raw/
