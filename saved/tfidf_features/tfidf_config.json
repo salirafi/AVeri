@@ -1,0 +1,23 @@
+{
+  "verbose": true,
+  "allowed_pos_tags": [
+    "NOUN",
+    "PROPN",
+    "VERB",
+    "ADJ",
+    "ADV",
+    "CONJ",
+    "AUX"
+  ],
+  "min_token_length": 2,
+  "ngram_range": [
+    1,
+    2
+  ],
+  "min_df": 2,
+  "max_df": 0.95,
+  "max_features": 25000,
+  "sublinear_tf": true,
+  "norm": "l2",
+  "dense_output": true
+}

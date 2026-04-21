@@ -1,0 +1,215 @@
+{
+  "verbose": true,
+  "include_function_word_rate": true,
+  "exclude_placeholders_from_avg_word_length": true,
+  "phrase_role_dependency_labels": [
+    "acl",
+    "advcl",
+    "ccomp",
+    "pcomp",
+    "relcl",
+    "xcomp"
+  ],
+  "pos_roles": {
+    "adjective": [
+      "ADJ"
+    ],
+    "adposition": [
+      "ADP"
+    ],
+    "adverb": [
+      "ADV"
+    ],
+    "auxiliary": [
+      "AUX"
+    ],
+    "conjunction": [
+      "CONJ"
+    ],
+    "coordinating_conjunction": [
+      "CCONJ"
+    ],
+    "determiner": [
+      "DET"
+    ],
+    "interjection": [
+      "INTJ"
+    ],
+    "noun": [
+      "NOUN"
+    ],
+    "numeral": [
+      "NUM"
+    ],
+    "particle": [
+      "PART"
+    ],
+    "pronoun": [
+      "PRON"
+    ],
+    "proper_noun": [
+      "PROPN"
+    ],
+    "punctuation": [
+      "PUNCT"
+    ],
+    "subordinating_conjunction": [
+      "SCONJ"
+    ],
+    "symbol": [
+      "SYM"
+    ],
+    "verb": [
+      "VERB"
+    ],
+    "other": [
+      "X"
+    ],
+    "space": [
+      "SPACE"
+    ]
+  },
+  "dep_roles": {
+    "root": [
+      "ROOT"
+    ],
+    "adjectival_clause": [
+      "acl"
+    ],
+    "adjectival_complement": [
+      "acomp"
+    ],
+    "adverbial_clause": [
+      "advcl"
+    ],
+    "adverbial_modifier": [
+      "advmod"
+    ],
+    "agent": [
+      "agent"
+    ],
+    "adjectival_modifier": [
+      "amod"
+    ],
+    "apposition": [
+      "appos"
+    ],
+    "attribute": [
+      "attr"
+    ],
+    "auxiliary": [
+      "aux"
+    ],
+    "passive_auxiliary": [
+      "auxpass"
+    ],
+    "case_marker": [
+      "case"
+    ],
+    "coordinating_conjunction": [
+      "cc"
+    ],
+    "clausal_complement": [
+      "ccomp"
+    ],
+    "compound": [
+      "compound"
+    ],
+    "conjunct": [
+      "conj"
+    ],
+    "clausal_subject": [
+      "csubj"
+    ],
+    "passive_clausal_subject": [
+      "csubjpass"
+    ],
+    "dative": [
+      "dative"
+    ],
+    "dependency_unspecified": [
+      "dep"
+    ],
+    "determiner": [
+      "det"
+    ],
+    "direct_object": [
+      "dobj"
+    ],
+    "expletive": [
+      "expl"
+    ],
+    "indirect_object": [
+      "iobj"
+    ],
+    "interjection": [
+      "intj"
+    ],
+    "marker": [
+      "mark"
+    ],
+    "meta": [
+      "meta"
+    ],
+    "negation": [
+      "neg"
+    ],
+    "nominal_modifier": [
+      "nmod"
+    ],
+    "noun_phrase_adverbial_modifier": [
+      "npadvmod"
+    ],
+    "nominal_subject": [
+      "nsubj"
+    ],
+    "passive_nominal_subject": [
+      "nsubjpass"
+    ],
+    "numeric_modifier": [
+      "nummod"
+    ],
+    "object": [
+      "obj"
+    ],
+    "object_predicate": [
+      "oprd"
+    ],
+    "parataxis": [
+      "parataxis"
+    ],
+    "prepositional_complement": [
+      "pcomp"
+    ],
+    "object_of_preposition": [
+      "pobj"
+    ],
+    "possessive_modifier": [
+      "poss"
+    ],
+    "preconjunct": [
+      "preconj"
+    ],
+    "predeterminer": [
+      "predet"
+    ],
+    "prepositional_modifier": [
+      "prep"
+    ],
+    "particle": [
+      "prt"
+    ],
+    "punctuation": [
+      "punct"
+    ],
+    "quantifier_modifier": [
+      "quantmod"
+    ],
+    "relative_clause_modifier": [
+      "relcl"
+    ],
+    "open_clausal_complement": [
+      "xcomp"
+    ]
+  }
+}

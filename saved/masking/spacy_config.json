@@ -1,0 +1,8 @@
+{
+  "verbose": true,
+  "use_gpu": false,
+  "nlp_model": "en_core_web_lg",
+  "nlp_batch_size": 150,
+  "nlp_n_process": 2,
+  "checkpoint_dir": "/Users/salirafi/Documents/Personal Project/Text Similarity/saved/masking/spacy_checkpoints"
+}

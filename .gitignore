@@ -3,8 +3,16 @@
 docs/
 __src/
 __pycache__/
-data/raw/
-saved/
+
+data/raw/**
+!data/raw/
+!data/raw/**/
+!data/raw/**/.gitkeep
+
+saved/**
+!saved/
+!saved/**/
+!saved/**/.gitkeep
 
 *.pkl
 *.parquet
@@ -12,3 +20,18 @@ saved/
 
 blogtext.csv
 src/testing.ipynb
+
+# runtime inference artifacts
+!saved/normalization/normalization_config.json
+!saved/masking/spacy_config.json
+!saved/masking/statistical_config.json
+!saved/tfidf_features/tfidf_config.json
+!saved/tfidf_features/vectorizer.pkl
+!saved/ngram_features/ngram_config.json
+!saved/ngram_features/char_vectorizer.pkl
+!saved/ngram_features/pos_vectorizer.pkl
+!saved/model/feature_spec.json
+!saved/model/metrics.json
+!saved/model/model.json
+!saved/model/threshold.json
+!saved/model/training_config.json

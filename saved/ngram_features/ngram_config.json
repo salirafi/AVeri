@@ -1,0 +1,18 @@
+{
+  "verbose": true,
+  "char_ngram_n": 4,
+  "char_tfidf_min_df": 2,
+  "char_tfidf_max_df": 0.95,
+  "char_tfidf_max_features": 50000,
+  "pos_ngram_range": [
+    2,
+    3
+  ],
+  "pos_tfidf_min_df": 2,
+  "pos_tfidf_max_df": 0.95,
+  "pos_tfidf_max_features": 5000,
+  "sublinear_tf": true,
+  "norm": "l2",
+  "include_readability": true,
+  "dense_output": true
+}
