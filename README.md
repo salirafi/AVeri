@@ -1,3 +1,13 @@
+---
+license: mit
+title: AVeri
+sdk: docker
+emoji: 📚
+colorFrom: gray
+colorTo: indigo
+short_description: An NLP-based author verifier tool.
+---
+
 # AVeri: Author Verification
 
 This repository contains the source code for an *authorship verifier* tool, which is used to predict whether a given pair of two texts were written by the same author based purely on stylistic and lexical characteristics (not semantic which is used to convey meaning or topic). The repository includes end-to-end machine learning pipeline for preparing paired texts, extracting stylometric and lexical features, training a binary classifier, and serving the trained model through a small Flask web app.
